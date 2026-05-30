@@ -18,7 +18,7 @@ function App() {
   const [authMode, setAuthMode] = useState<"login" | "register">("login")
 
   async function login(username: string, password: string) {
-    const res = await fetch("http://localhost:3001/login", {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password })
@@ -39,7 +39,7 @@ function App() {
   }
 
   async function register(username: string, password: string) {
-    const res = await fetch("http://localhost:3001/register", {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password })
