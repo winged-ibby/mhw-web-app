@@ -39,7 +39,7 @@ export function useFavorites(userId: number | null) {
 
     try {
       setLoading(true)
-      const res = await fetch(`http://localhost:3001/favorites/${userId}`)
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/favorites/${userId}`)
       const data = await res.json()
       setFavorites(data)
     } catch (err) {
@@ -51,7 +51,7 @@ export function useFavorites(userId: number | null) {
 
   async function addFavorite(monsterId: number) {
     if (!userId) return         
-    await fetch("http://localhost:3001/favorites", {
+    await fetch(`${import.meta.env.VITE_API_URL}/favorites`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ user_id: userId, monster_id: monsterId })
@@ -62,7 +62,7 @@ export function useFavorites(userId: number | null) {
   async function removeFavorite(monsterId: number) {
     if (!userId) return         
     await fetch(
-      `http://localhost:3001/favorites?user_id=${userId}&monster_id=${monsterId}`,
+      `${import.meta.env.VITE_API_URL}/favorites?user_id=${userId}&monster_id=${monsterId}`,
       { method: "DELETE" }
     )
     await fetchFavorites()

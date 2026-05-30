@@ -6,7 +6,7 @@ export function MonsterDetails({ monsterId, onClose }: MonsterDetailsProps) {
   const [fullMonster, setFullMonster] = useState<Monster | null>(null)
 
   useEffect(() => {
-    fetch(`http://localhost:3001/monsters/${monsterId}`)
+    fetch(`${import.meta.env.VITE_API_URL}/monsters/${monsterId}`)
       .then(res => res.json())
       .then(data => setFullMonster(data))
   }, [monsterId])
